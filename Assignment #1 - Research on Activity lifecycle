@@ -1,1 +1,76 @@
+In Android, an Activity represents a single screen with a user interface.
+The Activity Lifecycle defines how an activity behaves as the user navigates through an app, switches between apps, or the system destroys and recreates the activity.
+The lifecycle methods allow developers to manage resources properly, save data, and ensure smooth transitions.
 
+1. onCreate(Bundle savedInstanceState)
+Called once when the activity is first created.
+Used to initialize components, set up the UI, bind data, etc.
+
+2. onStart()
+Called when the activity becomes visible to the user.
+Activity is not yet interactive.
+
+3. onResume()
+Called when the activity comes to the foreground and is ready for user interaction.
+Best place to start animations, sensors, or listeners.
+
+4. onPause()
+Called when the activity is about to go into the background.
+Used to pause animations, release resources (e.g., camera, audio), or save unsaved data.
+
+5. onStop()
+Called when the activity is no longer visible.
+Good place to release heavy resources (network, database connections).
+
+6. onDestroy()
+Called before the activity is destroyed.
+Used for final cleanup to avoid memory leaks.
+
+
+
+package com.example.activitylifecycle;
+import android.os.Bundle;
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "ActivityLifecycle";
+
+    
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: Activity is created");
+    }
+
+    
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: Activity is visible to the user");
+    }
+
+    
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: Activity is now interactive");
+    }
+
+    
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: Activity is about to go to background");
+    }
+
+    
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: Activity is no longer visible");
+    }
+
+    
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: Activity is being destroyed");
+    }
+}
